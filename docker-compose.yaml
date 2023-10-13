@@ -2,21 +2,37 @@ version: "3"
 
 networks:
   loki:
+    driver: bridge
 
 services:
+
   loki:
     image: grafana/loki:2.9.0
+    container_name: loki
     ports:
       - "3100:3100"
-    command: -config.file=/etc/loki/local-config.yaml
+    # specify the processes that will be monitored, whether it is monolithic or separating read/write
+    command: 
+    - -config.file=/etc/loki/local-config.yaml
+    - -print-config-stderr=true # show the configuration file in the log
     networks:
       - loki
 
-  promtail:
-    image: grafana/promtail:2.9.0
-    volumes:
-      - /var/log:/var/log
-    command: -config.file=/etc/promtail/config.yml
+  # promtail:
+  #   image: grafana/promtail:2.9.0
+  #   volumes:
+  #     - /var/log:/var/log
+  #   command: -config.file=/etc/promtail/config.yml
+  #   networks:
+  #     - loki
+
+  node-api:
+    container_name: node-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
     networks:
       - loki
 
