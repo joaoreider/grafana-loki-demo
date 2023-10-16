@@ -20,8 +20,8 @@ Isso criará os contêineres da aplicação e os serviços necessários.
 
 3. A aplicação estará disponível nos seguintes endpoints:
 
-- [http://localhost:3100/generate-log](http://localhost:3100/generate-log) - Gera um log de informação.
-- [http://localhost:3100/error](http://localhost:3100/error) - Gera um log de erro.
+- [http://localhost:8080/generate-log](http://localhost:8080/generate-log) - Gera um log de informação.
+- [http://localhost:8080/error](http://localhost:8080/error) - Gera um log de erro.
 
 ## Visualização de Logs no Grafana
 
